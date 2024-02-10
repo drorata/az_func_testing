@@ -1,6 +1,8 @@
-import logging
 from datetime import datetime
+
 import azure.functions as func
+import loguru
+from loguru import logger
 
 app = func.FunctionApp()
 
@@ -12,8 +14,10 @@ app = func.FunctionApp()
     use_monitor=False,
 )
 def timer_trigger(myTimer: func.TimerRequest) -> None:
-    if myTimer.past_due:
-        logging.info("The timer is past due!")
+    logger.info(f"Loguru version is {loguru.__version__}")
 
-    logging.info("Great stuff!")
-    logging.info(f"Python timer trigger function executed at {datetime.now()}")
+    if myTimer.past_due:
+        logger.info("The timer is past due!")
+
+    logger.info("Great stuff!")
+    logger.info(f"Python timer trigger function executed at {datetime.now()}")
