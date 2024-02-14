@@ -1,0 +1,11 @@
+version: '3'
+
+tasks:
+  run_tests:
+    cmds:
+      - python -m pytest tests/
+
+  validate_lint:
+    cmds:
+      - python -m black --check --diff .
+      - python -m isort -c .
